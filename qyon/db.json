@@ -1,0 +1,22 @@
+{
+  "competidores": [
+    {
+      "nome": "fgr",
+      "genero": "Masculino",
+      "temperaturaMediaCorpo": "3",
+      "peso": "3",
+      "altura": "3",
+      "id": 3
+    }
+  ],
+  "pista": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "historicoCorrida": {
+    "name": "typicode"
+  }
+}
