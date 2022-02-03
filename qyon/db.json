@@ -1,22 +1,20 @@
 {
   "competidores": [
     {
-      "nome": "fgr",
+      "nome": "nikolas",
       "genero": "Masculino",
       "temperaturaMediaCorpo": "3",
-      "peso": "3",
-      "altura": "3",
-      "id": 3
+      "peso": "32",
+      "altura": "32",
+      "id": 1
     }
   ],
   "pista": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "descricao": "curvas fechadas",
+      "nome": "autódromo ",
+      "id": 1
     }
   ],
-  "historicoCorrida": {
-    "name": "typicode"
-  }
+  "historicoCorrida": []
 }
