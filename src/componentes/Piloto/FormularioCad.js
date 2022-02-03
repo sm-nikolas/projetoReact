@@ -9,13 +9,14 @@ const FormularioCad = (props) => {
         genero: '',
         temperaturaMediaCorpo: '',
         peso: '',
-        altura: ''
+        altura: '',
+        id: 0
     }
 
     let [values, setValues] = useState(camposIniciais)
-    
-    useEffect( () => {
-        if(props.idAtual == '') {
+
+    useEffect(() => {
+        if (props.idAtual == '') {
             setValues({
                 ...camposIniciais
             })
@@ -24,15 +25,15 @@ const FormularioCad = (props) => {
                 ...props.dadosPilotos[props.idAtual]
             })
         }
-    }, [props.idAtual, props.dadosPilotos] )
+    }, [props.idAtual, props.dadosPilotos])
 
     const manipuladorInputChange = e => {
         let { name, value } = e.target
 
-        setValues ({ ...values, [name]: value })
+        setValues({ ...values, [name]: value })
     }
 
-    
+
 
     const manipuladorFormEnvio = e => {
         e.preventDefault()
@@ -41,10 +42,10 @@ const FormularioCad = (props) => {
 
 
 
-    
 
 
-    return(
+
+    return (
         <form autoComplete="off" onSubmit={manipuladorFormEnvio}>
             <div className="form-group input-group">
                 <div className="input-group-prepend">
@@ -53,8 +54,8 @@ const FormularioCad = (props) => {
                     </div>
                 </div>
 
-                <input className="form-control" placeholder="Nome" name="nome" value={values.nome} 
-                onChange={manipuladorInputChange}/>
+                <input className="form-control" placeholder="Nome" name="nome" value={values.nome}
+                    onChange={manipuladorInputChange} />
             </div>
 
             <div className="row">
@@ -66,7 +67,7 @@ const FormularioCad = (props) => {
                     </div>
 
                     <select className="custom-select" id="inputGroupSelect01" name="genero" value={values.genero}
-                    onChange={manipuladorInputChange}>
+                        onChange={manipuladorInputChange}>
                         <option>Gênero...</option>
                         <option value="Feminino">Feminino</option>
                         <option value="Masculino">Masculino</option>
@@ -81,8 +82,8 @@ const FormularioCad = (props) => {
                         </div>
                     </div>
 
-                    <input className="form-control" placeholder="Temperatura corporal" name="temperaturaMediaCorpo" 
-                    value={values.temperaturaMediaCorpo} onChange={manipuladorInputChange}/>
+                    <input className="form-control" placeholder="Temperatura corporal" name="temperaturaMediaCorpo"
+                        value={values.temperaturaMediaCorpo} onChange={manipuladorInputChange} />
                 </div>
             </div>
             <div className="row">
@@ -93,8 +94,8 @@ const FormularioCad = (props) => {
                         </div>
                     </div>
 
-                    <input type="number" min="0" step="any" className="form-control" placeholder="Altura" name="altura" 
-                    value={values.altura} onChange={manipuladorInputChange}/>
+                    <input type="number" min="0" step="any" className="form-control" placeholder="Altura" name="altura"
+                        value={values.altura} onChange={manipuladorInputChange} />
                 </div>
 
                 <div className="form-group input-group col-md-6">
@@ -104,13 +105,14 @@ const FormularioCad = (props) => {
                         </div>
                     </div>
 
-                    <input type="number" min="0" step="any" className="form-control" placeholder="Peso" name="peso" 
-                    value={values.peso} onChange={manipuladorInputChange}/>
+                    <input type="number" min="0" step="any" className="form-control" placeholder="Peso" name="peso"
+                        value={values.peso} onChange={manipuladorInputChange} />
                 </div>
             </div>
 
             <div className="form-group">
-                <input type="submit" value={ props.idAtual == '' ? 'Salvar' : 'Atualizar' } className="btn btn-primary btn-block"/>
+                <input type="hidden" value={values.id} name="id"/>
+                <input type="submit" value={props.idAtual == '' ? 'Salvar' : 'Atualizar'} className="btn btn-primary btn-block" />
             </div>
         </form>
     )
