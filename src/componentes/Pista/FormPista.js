@@ -6,7 +6,7 @@ const FormPista = (props) => {
 
     const camposIniciais = {
         descricao: '',
-        nome: ''
+        id: 0
     }
 
     let [values, setValues] = useState(camposIniciais)
@@ -46,17 +46,7 @@ const FormPista = (props) => {
             <div className="form-group input-group">
                 <div className="input-group-prepend">
                     <div className="input-group-text">
-                        <i class="fas fa-file-signature"></i>
-                    </div>
-                </div>
-                <input className="form-control" placeholder="Nome" name="nome" value={values.nome}
-                    onChange={manipuladorInputChange} />
-            </div>
-
-            <div className="form-group input-group">
-                <div className="input-group-prepend">
-                    <div className="input-group-text">
-                        <i class="fas fa-info-circle"></i>
+                        <i className="fas fa-info-circle"></i>
                     </div>
                 </div>
                 <input className="form-control" placeholder="Descrição" name="descricao" value={values.descricao}

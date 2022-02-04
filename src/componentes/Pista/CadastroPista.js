@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import FormPista from "./FormPista"
+import '../../css/style.css';
 
 const CadastroPista = () => {
 
@@ -35,10 +36,17 @@ const CadastroPista = () => {
     //     })
     // }, [])
 
-    const addEdit = obj => {
+
+    function refreshPage() {
+        window.location.reload();
+    }
+
+    const addEdit = obj => { 
 
         if (idPista == '') {
 
+            
+            
             fetch("http://localhost:3008/pista", {
                 method: "POST",
                 body: JSON.stringify(obj),
@@ -48,6 +56,7 @@ const CadastroPista = () => {
                 .then(
                     (result) => {
                         console.log(result)
+                        refreshPage()
                     },
                     (error) => {
                         console.log(error)
@@ -65,16 +74,16 @@ const CadastroPista = () => {
             //     }
             // )
         } else {
-            console.log(obj)
             fetch("http://localhost:3008/pista/" + dadosPista[idPista].id, {
                 method: "PUT",
-                headers:  new Headers({"Content-Type": "application/json"}),
+                headers: new Headers({ "Content-Type": "application/json" }),
                 body: JSON.stringify(obj)
             })
                 .then(res => res.json())
                 .then(
                     (result) => {
                         console.log(result)
+                        refreshPage()
                     },
                     (error) => {
                         console.log(error)
@@ -94,22 +103,26 @@ const CadastroPista = () => {
         }
     }
 
+
     const deletePista = key => {
         if (window.confirm('Deseja realmente deletar essa pista?')) {
             fetch("http://localhost:3008/pista/" + dadosPista[key].id, {
                 method: "DELETE",
-                headers: {"Content-Type": "application/json"}
+                headers: { "Content-Type": "application/json" }
             })
                 .then(res => res.json())
                 .then(
                     (result) => {
                         console.log(result)
+                        refreshPage()
                     },
                     (error) => {
                         console.log(error)
                     });
         }
     }
+
+
 
     return (
         <div>
@@ -127,11 +140,11 @@ const CadastroPista = () => {
                 </div>
                 <div className="col-md-7">
                     <table className="table table-hover table-ligth">
-                        <thead>
+                        <thead className="thead-dark">
                             <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Nome</th>
+                                <th scope="col">Pistas</th>
                                 <th scope="col">Descrição</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -139,15 +152,14 @@ const CadastroPista = () => {
 
                                 Object.keys(dadosPista).map(i => {
                                     return <tr key={i}>
-                                        <td> {dadosPista[i].id} </td>
-                                        <td> {dadosPista[i].nome} </td>
+                                        <td>Pista {dadosPista[i].id} </td>
                                         <td> {dadosPista[i].descricao} </td>
 
                                         <td>
-                                            <a className="btn btn-primary" onClick={ () => {setIdPista([i])} }>
+                                            <a className="btn btn-primary" onClick={() => { setIdPista([i]) }}>
                                                 <i className="fas fa-pencil-alt"></i>
                                             </a>
-                                            <a className="btn btn-danger" onClick={ () => deletePista(i) }>
+                                            <a className="btn btn-danger" onClick={() => deletePista(i)}>
                                                 <i className="far fa-trash-alt"></i>
                                             </a>
                                         </td>

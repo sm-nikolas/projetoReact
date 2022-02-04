@@ -12,9 +12,59 @@
   "pista": [
     {
       "descricao": "curvas fechadas",
-      "nome": "autódromo ",
       "id": 1
+    },
+    {
+      "descricao": "wefw",
+      "id": 2
+    },
+    {
+      "descricao": "ad",
+      "id": 3
     }
   ],
-  "historicoCorrida": []
+  "historico-corrida": [
+    {
+      "CompetidorId": "1",
+      "PistaCorridaId": "2",
+      "DataCorrida": "2022-02-09",
+      "TempoGasto": "8989",
+      "id": 1
+    },
+    {
+      "CompetidorId": "1",
+      "PistaCorridaId": "1",
+      "DataCorrida": "2022-02-09",
+      "TempoGasto": "8989",
+      "id": 2
+    },
+    {
+      "CompetidorId": "1",
+      "PistaCorridaId": "1",
+      "DataCorrida": "2022-02-09",
+      "TempoGasto": "8989",
+      "id": 3
+    },
+    {
+      "CompetidorId": "1",
+      "PistaCorridaId": "1",
+      "DataCorrida": "2022-02-09",
+      "TempoGasto": "8989",
+      "id": 4
+    },
+    {
+      "CompetidorId": "1",
+      "PistaCorridaId": "1",
+      "DataCorrida": "2022-02-09",
+      "TempoGasto": "8989",
+      "id": 5
+    },
+    {
+      "CompetidorId": "1",
+      "PistaCorridaId": "1",
+      "DataCorrida": "2022-02-01",
+      "TempoGasto": "8989",
+      "id": 6
+    }
+  ]
 }

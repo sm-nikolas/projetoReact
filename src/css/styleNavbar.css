@@ -1,0 +1,9 @@
+.link{
+    color: white;
+    font-size: large;
+    font-family: Noto Sans, sans-serif;
+}
+
+.link:hover{
+    color: rgb(223, 223, 223);
+}

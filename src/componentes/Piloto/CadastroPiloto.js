@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react"
 import FormularioCad from "./FormularioCad"
+import '../../css/style.css';
 
 const CadastroPiloto = () => {
 
     let [idAtual, setIdAtual] = useState('')
+    
     const [dadosPilotos, setDadosPilotos] = useState({});
 
     useEffect(() => {
@@ -127,13 +129,14 @@ const CadastroPiloto = () => {
                 </div>
                 <div className="col-md-7">
                     <table className="table table-hover table-ligth">
-                        <thead>
+                        <thead className="thead-dark">
                             <tr>
                                 <th scope="col">Nome</th>
                                 <th scope="col">Gênero</th>
                                 <th scope="col">Média de temperatura corporal</th>
                                 <th scope="col">Peso</th>
                                 <th scope="col">Altura</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -141,11 +144,11 @@ const CadastroPiloto = () => {
 
                                 Object.keys(dadosPilotos).map(i => {
                                     return <tr key={i}>
-                                        <td scope="col"> {dadosPilotos[i].nome} </td>
-                                        <td> {dadosPilotos[i].genero} </td>
-                                        <td> {dadosPilotos[i].temperaturaMediaCorpo} </td>
-                                        <td> {dadosPilotos[i].peso} </td>
-                                        <td> {dadosPilotos[i].altura} </td>
+                                        <td scope="row"> {dadosPilotos[i].nome} </td>
+                                        <td scope="row"> {dadosPilotos[i].genero} </td>
+                                        <td scope="row"> {dadosPilotos[i].temperaturaMediaCorpo} </td>
+                                        <td scope="row"> {dadosPilotos[i].peso} </td>
+                                        <td scope="row"> {dadosPilotos[i].altura} </td>
 
                                         <td>
                                             <a className="btn btn-primary" onClick={ () => {setIdAtual([i])} }>
