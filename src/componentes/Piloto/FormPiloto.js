@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react"
 
-const FormularioCad = (props) => {
-
-    // variaveis de capitura de dados
+const FormPiloto = (props) => {
 
     const camposIniciais = {
         nome: '',
@@ -41,7 +39,7 @@ const FormularioCad = (props) => {
     }
 
 
-    
+
     return (
         <form autoComplete="off" onSubmit={manipuladorFormEnvio}>
             <div className="form-group input-group">
@@ -108,11 +106,11 @@ const FormularioCad = (props) => {
             </div>
 
             <div className="form-group">
-                <input type="hidden" value={values.id} name="id"/>
+                <input type="hidden" value={values.id} name="id" />
                 <input type="submit" value={props.idAtual == '' ? 'Salvar' : 'Atualizar'} className="btn btn-primary btn-block" />
             </div>
         </form>
     )
 }
 
-export default FormularioCad 
+export default FormPiloto 

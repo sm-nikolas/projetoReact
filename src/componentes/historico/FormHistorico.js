@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react"
 
 
+
 const FormHistorico = (props) => {
 
     const [dadosPilotos, setDadosPilotos] = useState([]);
     const [dadosPista, setDadosPista] = useState([]);
 
-    // variaveis de capitura de dados
 
     const camposIniciais = {
-        CompetidorId: 0,
-        PistaCorridaId: 0,
-        DataCorrida: "",
-        TempoGasto: 0.0,
+        CompetidorId: '',
+        PistaCorridaId: '',
+        DataCorrida: '',
+        TempoGasto: '',
         id: 0
     }
 
@@ -71,19 +71,16 @@ const FormHistorico = (props) => {
 
 
 
-
-
-
     return (
-        <form autoComplete="off" onSubmit={manipuladorFormEnvio}>
+        <form id='form' autoComplete="off" onSubmit={manipuladorFormEnvio}>
             <div className="form-group input-group">
                 <div className="input-group-prepend">
                     <div className="input-group-text">
-                        <i className="fas fa-info-circle"></i>
+                        <i className=" fas fa-user"></i>
                     </div>
                 </div>
-                <select name="CompetidorId" onChange={manipuladorInputChange} value={values.CompetidorId}>
-                    <option>Selecione</option>
+                <select className="custom-select" id="inputGroupSelect01" name="CompetidorId" onChange={manipuladorInputChange} value={values.CompetidorId}>
+                    <option>Selecione o piloto</option>
                     {dadosPilotos.map((option) => (
                         <option key={option.id} value={option.id}>{option.nome}</option>
                     ))}
@@ -92,11 +89,11 @@ const FormHistorico = (props) => {
             <div className="form-group input-group">
                 <div className="input-group-prepend">
                     <div className="input-group-text">
-                        <i className="fas fa-info-circle"></i>
+                        <i className="fas fa-road"></i>
                     </div>
                 </div>
-                <select name="PistaCorridaId" onChange={manipuladorInputChange} value={values.PistaCorridaId}>
-                    <option>Selecione</option>
+                <select className="custom-select" id="inputGroupSelect01" name="PistaCorridaId" onChange={manipuladorInputChange} value={values.PistaCorridaId}>
+                    <option>Selecione a pista</option>
                     {dadosPista.map((option) => (
                         <option key={option.id} value={option.id}>{option.descricao}</option>
                     ))}
@@ -105,16 +102,16 @@ const FormHistorico = (props) => {
             <div className="form-group input-group">
                 <div className="input-group-prepend">
                     <div className="input-group-text">
-                        <i className="fas fa-info-circle"></i>
+                        <i className="fas fa-stopwatch"></i>
                     </div>
                 </div>
-                <input className="form-control" placeholder="TempoGasto" name="TempoGasto" value={values.TempoGasto}
-                    onChange={manipuladorInputChange} />
+                <input type="number" min="0" step="any" className="form-control" placeholder="Tempo Gasto" name="TempoGasto"
+                    value={values.TempoGasto} onChange={manipuladorInputChange} />
             </div>
             <div className="form-group input-group">
                 <div className="input-group-prepend">
                     <div className="input-group-text">
-                        <i className="fas fa-info-circle"></i>
+                        <i className="fas fa-calendar-alt"></i>
                     </div>
                 </div>
                 <input type="date" className="form-control" placeholder="DataCorrida" name="DataCorrida" value={values.DataCorrida}

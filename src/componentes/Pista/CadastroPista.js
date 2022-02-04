@@ -22,31 +22,13 @@ const CadastroPista = () => {
     }, [])
 
 
-
-    // useEffect(() => {
-    //     app.child('pilotos').on('value', dbPhoto => {
-    //         console.log(dbPhoto)
-    //         if (dbPhoto.val() != null) {
-    //             setDadosPista({
-    //                 ...dbPhoto.val()
-    //             })
-    //         } else {
-    //             setDadosPista({})
-    //         }
-    //     })
-    // }, [])
-
-
     function refreshPage() {
         window.location.reload();
     }
 
-    const addEdit = obj => { 
+    const addEdit = obj => {
 
         if (idPista == '') {
-
-            
-            
             fetch("http://localhost:3008/pista", {
                 method: "POST",
                 body: JSON.stringify(obj),
@@ -62,17 +44,6 @@ const CadastroPista = () => {
                         console.log(error)
                     }
                 )
-
-
-
-            // app.child('pilotos').push(
-            //     obj,
-            //     error => {
-            //         if (error) {
-            //             console.log(error)
-            //         }
-            //     }
-            // )
         } else {
             fetch("http://localhost:3008/pista/" + dadosPista[idPista].id, {
                 method: "PUT",
@@ -88,18 +59,6 @@ const CadastroPista = () => {
                     (error) => {
                         console.log(error)
                     });
-
-
-
-
-            // app.child(`pilotos/${idPista}`).set(
-            //     obj,
-            //     err => {
-            //         if (err) {
-            //             console.log(err)
-            //         }
-            //     }
-            // )
         }
     }
 
@@ -123,23 +82,24 @@ const CadastroPista = () => {
     }
 
 
-
     return (
         <div>
 
-            <div className="jumbotron jumbotron-fluid">
-                <div className="container">
+            <div className="jumbotron jumbotron sombra2" id="apresenta">
+                <div className="container fonteTitulo">
                     <h1 className="display-4">Cadastro de Pistas</h1>
                     <p className="lead">Esse é um projeto teste, conhecendo o React com crud no Firebase</p>
                 </div>
             </div>
 
-            <div className="row">
-                <div className="col-md-5">
+            <div className="row" id="container">
+                <div className="col-md-4 offset-md-4">
                     <FormPista {...({ addEdit, idPista, dadosPista })} />
                 </div>
-                <div className="col-md-7">
-                    <table className="table table-hover table-ligth">
+            </div>
+            <div className="row container" id="divTabela">
+                <div className="col-md-8 offset-2">
+                    <table className="table table-hover table-ligth sombra">
                         <thead className="thead-dark">
                             <tr>
                                 <th scope="col">Pistas</th>

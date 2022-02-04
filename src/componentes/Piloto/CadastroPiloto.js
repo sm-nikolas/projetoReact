@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react"
-import FormularioCad from "./FormularioCad"
+import FormPiloto from "./FormPiloto"
 import '../../css/style.css';
 
 const CadastroPiloto = () => {
 
     let [idAtual, setIdAtual] = useState('')
-    
+
     const [dadosPilotos, setDadosPilotos] = useState({});
 
     useEffect(() => {
@@ -22,20 +22,9 @@ const CadastroPiloto = () => {
 
     }, [])
 
-
-
-    // useEffect(() => {
-    //     app.child('pilotos').on('value', dbPhoto => {
-    //         console.log(dbPhoto)
-    //         if (dbPhoto.val() != null) {
-    //             setDadosPilotos({
-    //                 ...dbPhoto.val()
-    //             })
-    //         } else {
-    //             setDadosPilotos({})
-    //         }
-    //     })
-    // }, [])
+    function refreshPage() {
+        window.location.reload();
+    }
 
     const addEdit = obj => {
 
@@ -50,49 +39,30 @@ const CadastroPiloto = () => {
                 .then(
                     (result) => {
                         console.log(result)
+                        refreshPage()
                     },
                     (error) => {
                         console.log(error)
                     }
                 )
 
-
-
-            // app.child('pilotos').push(
-            //     obj,
-            //     error => {
-            //         if (error) {
-            //             console.log(error)
-            //         }
-            //     }
-            // )
         } else {
             console.log(obj)
             fetch("http://localhost:3008/competidores/" + dadosPilotos[idAtual].id, {
                 method: "PUT",
-                headers:  new Headers({"Content-Type": "application/json"}),
+                headers: new Headers({ "Content-Type": "application/json" }),
                 body: JSON.stringify(obj)
             })
                 .then(res => res.json())
                 .then(
                     (result) => {
                         console.log(result)
+                        refreshPage()
                     },
                     (error) => {
                         console.log(error)
                     });
 
-
-
-
-            // app.child(`pilotos/${idAtual}`).set(
-            //     obj,
-            //     err => {
-            //         if (err) {
-            //             console.log(err)
-            //         }
-            //     }
-            // )
         }
     }
 
@@ -100,12 +70,13 @@ const CadastroPiloto = () => {
         if (window.confirm('Deseja realmente deletar esse piloto?')) {
             fetch("http://localhost:3008/competidores/" + dadosPilotos[key].id, {
                 method: "DELETE",
-                headers: {"Content-Type": "application/json"}
+                headers: { "Content-Type": "application/json" }
             })
                 .then(res => res.json())
                 .then(
                     (result) => {
                         console.log(result)
+                        refreshPage()
                     },
                     (error) => {
                         console.log(error)
@@ -116,19 +87,20 @@ const CadastroPiloto = () => {
     return (
         <div>
 
-            <div className="jumbotron jumbotron-fluid">
-                <div className="container">
-                    <h1 className="display-4">Cadastro de Pilotos</h1>
-                    <p className="lead">Esse é um projeto teste, conhecendo o React com crud no Firebase</p>
+            <div className="jumbotron jumbotron sombra2" id="apresenta">
+                <div className="container fonteTitulo">
+                    <h1 className="display-4">Cadastre-se como piloto</h1>
                 </div>
             </div>
 
-            <div className="row">
-                <div className="col-md-5">
-                    <FormularioCad {...({ addEdit, idAtual, dadosPilotos })} />
+            <div className="row" id="container">
+                <div className="col-md-4 offset-md-4">
+                    <FormPiloto {...({ addEdit, idAtual, dadosPilotos })} />
                 </div>
-                <div className="col-md-7">
-                    <table className="table table-hover table-ligth">
+            </div>
+            <div className="row container" id="divTabela">
+                <div className="col-md-8 offset-2">
+                    <table className="table table-hover table-ligth sombra" id="container">
                         <thead className="thead-dark">
                             <tr>
                                 <th scope="col">Nome</th>
@@ -151,10 +123,10 @@ const CadastroPiloto = () => {
                                         <td scope="row"> {dadosPilotos[i].altura} </td>
 
                                         <td>
-                                            <a className="btn btn-primary" onClick={ () => {setIdAtual([i])} }>
+                                            <a className="btn btn-primary" onClick={() => { setIdAtual([i]) }}>
                                                 <i className="fas fa-pencil-alt"></i>
                                             </a>
-                                            <a className="btn btn-danger" onClick={ () => deletePiloto(i) }>
+                                            <a className="btn btn-danger" onClick={() => deletePiloto(i)}>
                                                 <i className="far fa-trash-alt"></i>
                                             </a>
                                         </td>

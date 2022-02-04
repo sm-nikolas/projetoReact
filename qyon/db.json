@@ -1,25 +1,49 @@
 {
   "competidores": [
     {
-      "nome": "nikolas",
+      "nome": "Nikolas",
       "genero": "Masculino",
-      "temperaturaMediaCorpo": "3",
-      "peso": "32",
-      "altura": "32",
+      "temperaturaMediaCorpo": "35.9",
+      "peso": "71",
+      "altura": "1.86",
       "id": 1
+    },
+    {
+      "nome": "Rone",
+      "genero": "Masculino",
+      "temperaturaMediaCorpo": "36.8",
+      "peso": "75",
+      "altura": "1.77",
+      "id": 2
+    },
+    {
+      "nome": "Asdrubal",
+      "genero": "Masculino",
+      "temperaturaMediaCorpo": "35.9",
+      "peso": "80",
+      "altura": "1.80",
+      "id": 3
+    },
+    {
+      "nome": "Gabi",
+      "genero": "Feminino",
+      "temperaturaMediaCorpo": "36.5",
+      "peso": "45",
+      "altura": "1.66",
+      "id": 4
     }
   ],
   "pista": [
     {
-      "descricao": "curvas fechadas",
+      "descricao": "Curvas fechadas",
       "id": 1
     },
     {
-      "descricao": "wefw",
+      "descricao": "Curvas suaves",
       "id": 2
     },
     {
-      "descricao": "ad",
+      "descricao": "Linha reta",
       "id": 3
     }
   ],
@@ -27,44 +51,30 @@
     {
       "CompetidorId": "1",
       "PistaCorridaId": "2",
-      "DataCorrida": "2022-02-09",
-      "TempoGasto": "8989",
+      "DataCorrida": "2022-02-08",
+      "TempoGasto": "30.00",
       "id": 1
     },
     {
       "CompetidorId": "1",
-      "PistaCorridaId": "1",
+      "PistaCorridaId": "2",
       "DataCorrida": "2022-02-09",
-      "TempoGasto": "8989",
+      "TempoGasto": "20.22",
       "id": 2
     },
     {
-      "CompetidorId": "1",
-      "PistaCorridaId": "1",
-      "DataCorrida": "2022-02-09",
-      "TempoGasto": "8989",
-      "id": 3
+      "CompetidorId": "4",
+      "PistaCorridaId": "3",
+      "DataCorrida": "2022-02-11",
+      "TempoGasto": "5.55",
+      "id": 9
     },
     {
-      "CompetidorId": "1",
-      "PistaCorridaId": "1",
-      "DataCorrida": "2022-02-09",
-      "TempoGasto": "8989",
-      "id": 4
-    },
-    {
-      "CompetidorId": "1",
-      "PistaCorridaId": "1",
-      "DataCorrida": "2022-02-09",
-      "TempoGasto": "8989",
-      "id": 5
-    },
-    {
-      "CompetidorId": "1",
-      "PistaCorridaId": "1",
-      "DataCorrida": "2022-02-01",
-      "TempoGasto": "8989",
-      "id": 6
+      "CompetidorId": "4",
+      "PistaCorridaId": "2",
+      "DataCorrida": "2022-09-26",
+      "TempoGasto": "22.08",
+      "id": 10
     }
   ]
 }

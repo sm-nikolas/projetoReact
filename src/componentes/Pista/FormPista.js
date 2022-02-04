@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react"
 
 const FormPista = (props) => {
 
-    // variaveis de capitura de dados
-
     const camposIniciais = {
         descricao: '',
         id: 0

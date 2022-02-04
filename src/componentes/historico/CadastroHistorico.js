@@ -47,20 +47,6 @@ const CadastroHistorico = () => {
 
 
 
-    // useEffect(() => {
-    //     app.child('pilotos').on('value', dbPhoto => {
-    //         console.log(dbPhoto)
-    //         if (dbPhoto.val() != null) {
-    //             setHistorico({
-    //                 ...dbPhoto.val()
-    //             })
-    //         } else {
-    //             setHistorico({})
-    //         }
-    //     })
-    // }, [])
-
-
     function refreshPage() {
         window.location.reload();
     }
@@ -84,16 +70,6 @@ const CadastroHistorico = () => {
                     }
                 )
 
-
-
-            // app.child('pilotos').push(
-            //     obj,
-            //     error => {
-            //         if (error) {
-            //             console.log(error)
-            //         }
-            //     }
-            // )
         } else {
             fetch("http://localhost:3008/historico-corrida/" + dadosHistorico[idHistorico].id, {
                 method: "PUT",
@@ -111,16 +87,6 @@ const CadastroHistorico = () => {
                     });
 
 
-
-
-            // app.child(`pilotos/${idHistorico}`).set(
-            //     obj,
-            //     err => {
-            //         if (err) {
-            //             console.log(err)
-            //         }
-            //     }
-            // )
         }
     }
 
@@ -132,7 +98,7 @@ const CadastroHistorico = () => {
 
             soma += parseFloat(element.TempoGasto)
         });
-        return soma / dadosHistorico.length
+        return (soma / dadosHistorico.length).toFixed(2)
     }
 
     const getDescPista = key => {
@@ -141,10 +107,16 @@ const CadastroHistorico = () => {
 
     }
 
-    const getPista = key => {
-        let pista = dadosPista.find(p => p.id == key)
-        return pista?.id
+    const getPistasUtilizadas = () => {
+        let pista = dadosPista.filter(p => dadosHistorico.some(h => h.PistaCorridaId == p.id))
+        console.log(pista)
+        return pista
+    }
 
+    const getPilotoNaoParticipou = () => {
+        let piloto = dadosPilotos.filter(p => !dadosHistorico.some(h => h.CompetidorId == p.id))
+        console.log(piloto)
+        return piloto
     }
 
     const getPiloto = key => {
@@ -159,22 +131,22 @@ const CadastroHistorico = () => {
     return (
         <div>
 
-            <div className="jumbotron jumbotron-fluid">
-                <div className="container">
-                    <h1 className="display-4">Cadastro de historicoCorridas</h1>
-                    <p className="lead">Esse é um projeto teste, conhecendo o React com crud no Firebase</p>
+            <div className="jumbotron jumbotron sombra2" id="apresenta">
+                <div className="container fonteTitulo">
+                    <h1 className="display-4">Cadastre o histórico da sua corrida</h1>
+                    <p className="lead">Não se esqueça de cadastrar-se como piloto</p>
                 </div>
             </div>
-
-            <div className="row">
-                <div className="col-md-5">
+            <div className="row" id="container">
+                <div className="col-md-4 offset-md-4">
                     <FormHistorico {...({ addEdit, idHistorico, dadosHistorico })} />
                 </div>
-                <div className="col-md-7">
-                    <table className="table table-hover table-ligth">
+            </div>
+            <div className="row container" id="container">
+                <div className="col-md-6">
+                    <table className="table table-hover table-ligth sombra">
                         <thead className="thead-dark">
                             <tr>
-                                <th scope="col">ID</th>
                                 <th scope="col">Nome</th>
                                 <th scope="col">Descrição da pista</th>
                                 <th scope="col">Data da corrida</th>
@@ -188,7 +160,6 @@ const CadastroHistorico = () => {
                                 Object.keys(dadosHistorico).map(i => {
 
                                     return <tr key={i}>
-                                        <td> {dadosHistorico[i].id} </td>
                                         <td> {getPiloto(dadosHistorico[i].CompetidorId)} </td>
                                         <td> {getDescPista(dadosHistorico[i].PistaCorridaId)} </td>
                                         <td> {dadosHistorico[i].DataCorrida} </td>
@@ -211,16 +182,15 @@ const CadastroHistorico = () => {
                             <tr>
                                 <th> </th>
                                 <th> </th>
-                                <th> </th>
                                 <th>Média de tempo:</th>
                                 <th> {media()} </th>
                                 <th> </th>
                             </tr>
                         </tbody>
                     </table>
-
-
-                    <table className="table table-hover table-ligth">
+                </div>
+                <div className="col-md-6">
+                    <table className="table table-hover table-ligth sombra">
                         <thead className="thead-dark">
 
                             <tr>
@@ -231,18 +201,42 @@ const CadastroHistorico = () => {
                         </thead>
                         <tbody>
                             {
-                                Object.keys(dadosHistorico).map(i => {
-                                    return <tr key={i}>
-                                        <td>Pista {getPista(dadosHistorico[i].PistaCorridaId)}</td>
-                                        <td> {getDescPista(dadosHistorico[i].PistaCorridaId)} </td>
+                                getPistasUtilizadas().map((dadosPista, i) => (
+                                    <tr key={i}>
+                                        <td>Pista {dadosPista.id}</td>
+                                        <td> {dadosPista.descricao} </td>
                                     </tr>
-                                })
+                                ))
                             }
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div >
+            <div className="row" id="divTabela">
+                <div className="col-md-4 offset-md-4">
+                    <table className="table table-hover table-ligth sombra">
+                        <thead className="thead-dark">
+
+                            <tr>
+                                <th scope="col">Pilotos que não competiram</th>
+                                <th scope="col">Nome</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            {
+                                getPilotoNaoParticipou().map((dadosPilotos, i) => (
+                                    <tr key={i}>
+                                        <td>Piloto {dadosPilotos.id}</td>
+                                        <td> {dadosPilotos.nome} </td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     )
 }
 
